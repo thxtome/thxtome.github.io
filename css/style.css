@@ -621,6 +621,7 @@ code {
 #sidebar .sidebar-top {
   background: #006bde;
   padding: 15px 30px;
+  display: none;
 }
 #sidebar .sidebar-top:before,
 #sidebar .sidebar-top:after {
