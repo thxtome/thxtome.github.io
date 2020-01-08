@@ -2146,6 +2146,9 @@ i.icon:before {
   #sidebar .widgets-container {
     padding-bottom: 15px;
   }
+  #sidebar .sidebar-top {
+    display: none;
+  }
   #footer {
     margin-top: 0px;
   }
