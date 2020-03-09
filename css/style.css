@@ -1961,6 +1961,7 @@ i.icon:before {
     content: '\f100';
   }
   .main-body-inner #sidebar .sidebar-top {
+    display: none;
     padding: 10px 30px;
     background: none;
     border-bottom: 1px solid #ddd;

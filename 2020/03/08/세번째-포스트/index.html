@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>다리를 지나는 트럭 | 제이팍의 TIL</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="" />
+    
+    <meta name="description" content="출처 &#x3D; 프로그래머스문제일차선인 다리에 트럭 여러대가 지나가는데 걸리는 총 시간을 구해라.단 다리에 올라간 트럭의 무게가 다리의 최대하중을 넘어선 안된다. 고민전에 풀었던 문제인데 코드를 다시보니 알아보기가 너무 힘들었다.그래서 최근에 다시 알아보기 쉽게 코드를 다시 짜보았다.트럭과 다리를 객체로 만들고 각각에 필요한 기능들을 메서드로 넣고나니훨씬 알아보기">
+<meta property="og:type" content="article">
+<meta property="og:title" content="다리를 지나는 트럭">
+<meta property="og:url" content="http://thxtome.github.io/2020/03/08/%EC%84%B8%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/index.html">
+<meta property="og:site_name" content="제이팍의 TIL">
+<meta property="og:description" content="출처 &#x3D; 프로그래머스문제일차선인 다리에 트럭 여러대가 지나가는데 걸리는 총 시간을 구해라.단 다리에 올라간 트럭의 무게가 다리의 최대하중을 넘어선 안된다. 고민전에 풀었던 문제인데 코드를 다시보니 알아보기가 너무 힘들었다.그래서 최근에 다시 알아보기 쉽게 코드를 다시 짜보았다.트럭과 다리를 객체로 만들고 각각에 필요한 기능들을 메서드로 넣고나니훨씬 알아보기">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2020-03-08T02:07:00.000Z">
+<meta property="article:modified_time" content="2020-03-08T02:38:00.000Z">
+<meta property="article:author" content="Jay Park">
+<meta property="article:tag" content="웹개발">
+<meta property="article:tag" content=" 프론트엔드">
+<meta property="article:tag" content=" 백엔드">
+<meta property="article:tag" content=" 풀스택">
+<meta name="twitter:card" content="summary">
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">홈</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/%EC%9E%90%EB%B0%94/">자바</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/%EC%9E%90%EB%B0%94/%EC%8A%A4%ED%94%84%EB%A7%81/">스프링</a></li></ul></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-세번째-포스트" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        다리를 지나는 트럭
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+      <i class="fa fa-calendar"></i>
+      <a href="/2020/03/08/%EC%84%B8%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/" class="article-date">
+         <time datetime="2020-03-08T02:07:00.000Z" itemprop="datePublished">2020-03-08</time>
+      </a>
+    </div>
+
+
+                
+
+                
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="출처-프로그래머스"><a href="#출처-프로그래머스" class="headerlink" title="출처 = 프로그래머스"></a>출처 = 프로그래머스</h2><h2 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h2><p>일차선인 다리에 트럭 여러대가 지나가는데 걸리는 총 시간을 구해라.<br>단 다리에 올라간 트럭의 무게가 다리의 최대하중을 넘어선 안된다.</p>
+<h2 id="고민"><a href="#고민" class="headerlink" title="고민"></a>고민</h2><p>전에 풀었던 문제인데 코드를 다시보니 알아보기가 너무 힘들었다.<br>그래서 최근에 다시 알아보기 쉽게 코드를 다시 짜보았다.<br>트럭과 다리를 객체로 만들고 각각에 필요한 기능들을 메서드로 넣고나니<br>훨씬 알아보기가 편해졌다.</p>
+<h2 id="방법"><a href="#방법" class="headerlink" title="방법"></a>방법</h2><p>대기중은 트럭과 다리에 올라간 트럭은 큐를 사용해서 만들고<br>다리에 올라간 트럭은 다리의 멤버변수로 넣는다.</p>
+<p>다리에 트럭이 올라갈 수 있는지 확인한다.<br>올라갈 수 있으면 다리트럭큐에 넣고 시간에 1을 더한다.<br>올라갈 수 없으면 첫번째 트럭이 내려올때까지 시간을 더한다<br>트럭이 도착했으면 다리트럭큐에서 빼준다.</p>
+<p>위의 과정을 다리에 올라가길 기다리는 트럭이 없을때까지 반복한다.</p>
+<p>마지막 트럭이 다리에 올라가면 트럭이 도착할 때까지 걸리는 시간을 더한다.</p>
+<h2 id="코드"><a href="#코드" class="headerlink" title="코드"></a>코드</h2><figure class="highlight java"><figcaption><span>[다리를 지나가보자] []</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"><span class="comment">//트럭클래스</span></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Truck</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> weight;</span><br><span class="line">        <span class="keyword">int</span> move;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Truck</span><span class="params">(<span class="keyword">int</span> weight)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.weight = weight;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.move++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getMove</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.move;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getWeight</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.weight;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//다리클래스</span></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bridge</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> length;</span><br><span class="line">        <span class="keyword">int</span> weight;</span><br><span class="line">        Queue&lt;Truck&gt; onTruckQueue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Bridge</span><span class="params">(<span class="keyword">int</span> length, <span class="keyword">int</span> weight)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.length = length;</span><br><span class="line">            <span class="keyword">this</span>.weight = weight;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isOnPossible</span><span class="params">(<span class="keyword">int</span> weight)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(Truck t : onTruckQueue) &#123;</span><br><span class="line">                weight += t.weight;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> weight &lt;= <span class="keyword">this</span>.weight;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">truckIn</span><span class="params">(Truck t)</span> </span>&#123;</span><br><span class="line">            onTruckQueue.add(t);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">truckOut</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            onTruckQueue.poll();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isArrived</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> onTruckQueue.peek().getMove() &gt;= <span class="keyword">this</span>.length;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">allMove</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(Truck t : onTruckQueue) &#123;</span><br><span class="line">                t.move();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">moveUntilTruckArrive</span><span class="params">(<span class="keyword">int</span> answer)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.length - <span class="keyword">this</span>.onTruckQueue.peek().getMove(); i++) &#123;</span><br><span class="line">                <span class="keyword">this</span>.allMove();</span><br><span class="line">                answer++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> answer;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">moveLastTruck</span><span class="params">(<span class="keyword">int</span> answer)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> answer += <span class="keyword">this</span>.length;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">solution</span><span class="params">(<span class="keyword">int</span> bridge_length, <span class="keyword">int</span> weight, <span class="keyword">int</span>[] truck_weights)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> answer = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//객체 생성하고 대기트럭큐 생성후 큐에 트럭을 넣어줌</span></span><br><span class="line">        Bridge bridge = <span class="keyword">new</span> Bridge(bridge_length,weight);</span><br><span class="line">        Queue&lt;Truck&gt; waitTrucks = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> tWeight : truck_weights) &#123;</span><br><span class="line">            waitTrucks.add(<span class="keyword">new</span> Truck(tWeight));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//대기트럭이 없을때까지 반복</span></span><br><span class="line">        <span class="keyword">while</span>(waitTrucks.size() != <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">//다리에 올릴 수 있는지 확인하고 가능하면 트럭을 넣고 시간에 1초 더해줌</span></span><br><span class="line">            <span class="keyword">if</span>(bridge.isOnPossible(waitTrucks.peek().getWeight())) &#123;</span><br><span class="line">                bridge.truckIn(waitTrucks.poll());</span><br><span class="line">                bridge.allMove();</span><br><span class="line">                answer++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//올릴 수 없으면 다리의 첫번째 트럭이 도착할때까지 시간을 더해줌</span></span><br><span class="line">            <span class="keyword">else</span> answer = bridge.moveUntilTruckArrive(answer);</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//트럭이 도착했으면 다리트럭큐에서 빼줌</span></span><br><span class="line">            <span class="keyword">if</span>(bridge.isArrived()) bridge.truckOut();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//다리의 마지막 트럭이 도착할때까지 시간을 더함</span></span><br><span class="line">        answer = bridge.moveLastTruck(answer);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> answer;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+<h1 id="결과"><a href="#결과" class="headerlink" title="결과"></a>결과</h1><p>전에 풀었던 코드보다 훨씬 알아보기도 편하고<br>걸리던 시간도 단축됐다.<br>가끔 과거 코드를 바꿔보는 것도 도움이 되는 것 같다.</p>
+<h1 id="끝"><a href="#끝" class="headerlink" title="끝!"></a>끝!</h1>
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://thxtome.github.io/2020/03/08/%EC%84%B8%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/" data-id="ck7kft1bc0000t07dcx372euw" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "Jay Park"
+        },
+        "headline": "다리를 지나는 트럭",
+        "image": "http://thxtome.github.io",
+        "keywords": "",
+        "genre": "알고리즘",
+        "datePublished": "2020-03-08",
+        "dateCreated": "2020-03-08",
+        "dateModified": "2020-03-08",
+        "url": "http://thxtome.github.io/2020/03/08/세번째-포스트/",
+        "description": "출처 = 프로그래머스문제일차선인 다리에 트럭 여러대가 지나가는데 걸리는 총 시간을 구해라.단 다리에 올라간 트럭의 무게가 다리의 최대하중을 넘어선 안된다.
+고민전에 풀었던 문제인데 코드를 다시보니 알아보기가 너무 힘들었다.그래서 최근에 다시 알아보기 쉽게 코드를 다시 짜보았다.트럭과 다리를 객체로 만들고 각각에 필요한 기능들을 메서드로 넣고나니훨씬 알아보기",
+        "wordCount": 1450
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>팔로우:</p>
+        <ul class="social-links">
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2020/03/07/%EB%91%90%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">오래된</strong>
+        <p class="article-nav-title">수박수박수박수?</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">최근 글</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a></p>
+                            <p class="item-title"><a href="/2020/03/08/%EC%84%B8%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/" class="title">다리를 지나는 트럭</a></p>
+                            <p class="item-date"><time datetime="2020-03-08T02:07:00.000Z" itemprop="datePublished">2020-03-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a></p>
+                            <p class="item-title"><a href="/2020/03/07/%EB%91%90%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/" class="title">수박수박수박수?</a></p>
+                            <p class="item-date"><time datetime="2020-03-07T08:11:00.000Z" itemprop="datePublished">2020-03-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/%EC%9E%90%EB%B0%94/">자바</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/%EC%9E%90%EB%B0%94/%EC%8A%A4%ED%94%84%EB%A7%81/">스프링</a></p>
+                            <p class="item-title"><a href="/2020/02/28/%EC%B2%AB%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/" class="title">이클립스에 Spring Tool Suite 플러그인 설치</a></p>
+                            <p class="item-date"><time datetime="2020-02-28T12:55:38.000Z" itemprop="datePublished">2020-02-28</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">카테고리</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%9E%90%EB%B0%94/">자바</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%9E%90%EB%B0%94/%EC%8A%A4%ED%94%84%EB%A7%81/">스프링</a><span class="category-list-count">1</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">아카이브</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">3월 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">2월 2020</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+
+            
+                
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2020 Jay Park</p>
+                
+                <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'thxtome-github-io';
+    
+    
+    var disqus_url = 'http://thxtome.github.io/2020/03/08/%EC%84%B8%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>
