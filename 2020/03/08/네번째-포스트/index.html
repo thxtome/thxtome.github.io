@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>LinkedList - 1 | 제이팍의 TIL</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="" />
+    
+    <meta name="description" content="기초가 부족하단 생각에 자료구조부터 공부해보기로 했다스프링, 익스프레스, 마이바티스 등등 프레임워크를 공부하면 할수록기초가 중요하다는 생각이 들어 알고리즘, 자료구조등을 함께 공부하기로 했다.먼저 자료구조중에 LickedList를 먼저 공부한다. LinkedListLinkedList란 하나의 노드에 데이터를 담고 다음 노드의 주소를 가르키는 자료구조이다.다">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LinkedList - 1">
+<meta property="og:url" content="http://thxtome.github.io/2020/03/08/%EB%84%A4%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/index.html">
+<meta property="og:site_name" content="제이팍의 TIL">
+<meta property="og:description" content="기초가 부족하단 생각에 자료구조부터 공부해보기로 했다스프링, 익스프레스, 마이바티스 등등 프레임워크를 공부하면 할수록기초가 중요하다는 생각이 들어 알고리즘, 자료구조등을 함께 공부하기로 했다.먼저 자료구조중에 LickedList를 먼저 공부한다. LinkedListLinkedList란 하나의 노드에 데이터를 담고 다음 노드의 주소를 가르키는 자료구조이다.다">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://thxtome.github.io/css/images/linkedlist/1.jpg">
+<meta property="article:published_time" content="2020-03-08T02:07:00.000Z">
+<meta property="article:modified_time" content="2020-03-10T14:46:13.053Z">
+<meta property="article:author" content="Jay Park">
+<meta property="article:tag" content="웹개발">
+<meta property="article:tag" content=" 프론트엔드">
+<meta property="article:tag" content=" 백엔드">
+<meta property="article:tag" content=" 풀스택">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://thxtome.github.io/css/images/linkedlist/1.jpg">
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">홈</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/">자료구조</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/%EC%9E%90%EB%B0%94/">자바</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/%EC%9E%90%EB%B0%94/%EC%8A%A4%ED%94%84%EB%A7%81/">스프링</a></li></ul></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/">자료구조</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-네번째-포스트" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        LinkedList - 1
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+      <i class="fa fa-calendar"></i>
+      <a href="/2020/03/08/%EB%84%A4%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/" class="article-date">
+         <time datetime="2020-03-08T02:07:00.000Z" itemprop="datePublished">2020-03-08</time>
+      </a>
+    </div>
+
+
+                
+
+                
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="기초가-부족하단-생각에-자료구조부터-공부해보기로-했다"><a href="#기초가-부족하단-생각에-자료구조부터-공부해보기로-했다" class="headerlink" title="기초가 부족하단 생각에 자료구조부터 공부해보기로 했다"></a>기초가 부족하단 생각에 자료구조부터 공부해보기로 했다</h2><p>스프링, 익스프레스, 마이바티스 등등 프레임워크를 공부하면 할수록<br>기초가 중요하다는 생각이 들어 알고리즘, 자료구조등을 함께 공부하기로 했다.<br>먼저 자료구조중에 LickedList를 먼저 공부한다.</p>
+<h2 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h2><p>LinkedList란 하나의 노드에 데이터를 담고 다음 노드의 주소를 가르키는 자료구조이다.<br>다음 노드만 가리키는 Singly Linked List와<br>이전의 노드도 함께 양방향으로 가리키는 Doubly linked list가 있다.<br><img src="/css/images/linkedlist/1.jpg" alt="양방향으로 가리키는 Doubly linked list!"></p>
+<p>LinkedList는 ArrayList에 비해 장단점이 있는데,<br>단점으론 현재 내 노드에서 곧바로 떨어진 노드로 갈 수 없다.<br>즉, 순차접근만이 가능해서 조회하는 일에는 적합하지 않다.</p>
+<p>장점은 데이터를 삽입하거나 삭제하는 경우 노드들의 주소만 변경하면 되기 때문에<br>상대적으로 간단하게 삽입/삭제 할 수 있다.<br>또한 메모리상 붙어있지 않고 주소를 연결하기 때문에 개수의 한계가 없다.</p>
+<h3 id="구현"><a href="#구현" class="headerlink" title="구현"></a>구현</h3><p>Doubly linked list를 간단하게 구현해보려고 한다.<br>java의 LinkedList와 생활코딩과를 참고했다.</p>
+<figure class="highlight java"><figcaption><span>[Doubly linked list] []</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedList</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">	<span class="comment">//리스트의 사이즈와 처음노드과 마지막노드</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line">	<span class="keyword">private</span> Node&lt;E&gt; head;</span><br><span class="line">	<span class="keyword">private</span> Node&lt;E&gt; tail;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//노드 클래스</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">		E item;</span><br><span class="line">		Node&lt;E&gt; next;</span><br><span class="line">		Node&lt;E&gt; prev;</span><br><span class="line">		</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(Node&lt;E&gt; prev, E element, Node&lt;E&gt; next)</span> </span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.item = element;</span><br><span class="line">			<span class="keyword">this</span>.next = next;</span><br><span class="line">			<span class="keyword">this</span>.prev = prev;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//데이터를 앞에 넣을때</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addFirst</span> <span class="params">(E element)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">final</span> Node&lt;E&gt; prevHead = head;</span><br><span class="line">		</span><br><span class="line">		Node&lt;E&gt; newNode = <span class="keyword">new</span> Node&lt;E&gt;(<span class="keyword">null</span>, element, head);</span><br><span class="line">		head = newNode;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(prevHead == <span class="keyword">null</span>) tail = head;</span><br><span class="line">		<span class="keyword">else</span> prevHead.prev = newNode;</span><br><span class="line">		</span><br><span class="line">		size++;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//데이터를 뒤에 넣을때</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLast</span> <span class="params">(E element)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">final</span> Node&lt;E&gt; prevTail = tail;</span><br><span class="line">		</span><br><span class="line">		Node&lt;E&gt; newNode = <span class="keyword">new</span> Node&lt;E&gt;(tail, element, <span class="keyword">null</span>);</span><br><span class="line">		tail = newNode;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(prevTail == <span class="keyword">null</span>) head = tail;</span><br><span class="line">		<span class="keyword">else</span> prevTail.next = newNode;</span><br><span class="line">		</span><br><span class="line">		size++;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//위치로 노드를 구할때</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Node&lt;E&gt; <span class="title">nodeAt</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">		Node&lt;E&gt; x = <span class="keyword">this</span>.head; </span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; index; i++) &#123;</span><br><span class="line">			x = x.next;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> x;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//노드를 중간에 삽입할때</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">		Node&lt;E&gt; prev = nodeAt(index);</span><br><span class="line">		Node&lt;E&gt; next = nodeAt(index+<span class="number">1</span>);</span><br><span class="line">		Node&lt;E&gt; newNode = <span class="keyword">new</span> Node&lt;E&gt;(prev, element, next);</span><br><span class="line">		prev.next = newNode; </span><br><span class="line">		next.prev = newNode;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//결과를 출력</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(head == <span class="keyword">null</span>)&#123;</span><br><span class="line">		        <span class="keyword">return</span> <span class="string">"[]"</span>;</span><br><span class="line">		    &#125;       </span><br><span class="line">		 </span><br><span class="line">		 StringBuffer sb = <span class="keyword">new</span> StringBuffer(<span class="string">"["</span> + String.valueOf(<span class="keyword">this</span>.head.item));</span><br><span class="line">		    </span><br><span class="line">		 <span class="keyword">for</span> (Node&lt;E&gt; x = <span class="keyword">this</span>.head.next; x != <span class="keyword">null</span>; x = x.next) &#123;</span><br><span class="line">			 sb.append(<span class="string">","</span> + String.valueOf(x.item));</span><br><span class="line">         &#125;</span><br><span class="line">		 </span><br><span class="line">		 <span class="keyword">return</span> sb.append(<span class="string">"]"</span>).toString();</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>출력테스트</p>
+<figure class="highlight java"><figcaption><span>[Doubly linked list] []</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[]args)</span> </span>&#123;</span><br><span class="line">	LinkedList&lt;Integer&gt; list = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</span><br><span class="line">	list.addFirst(<span class="number">1</span>);</span><br><span class="line">	list.addFirst(<span class="number">2</span>);</span><br><span class="line">	list.addFirst(<span class="number">3</span>);</span><br><span class="line">	list.addFirst(<span class="number">4</span>);</span><br><span class="line">	list.add(<span class="number">2</span>,<span class="number">8</span>);</span><br><span class="line">	System.out.println(list.toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>출력결과</p>
+<figure class="highlight java"><figcaption><span>[Doubly linked list] []</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">8</span>,<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="2번으로-이어짐"><a href="#2번으로-이어짐" class="headerlink" title="2번으로 이어짐"></a>2번으로 이어짐</h1>
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://thxtome.github.io/2020/03/08/%EB%84%A4%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/" data-id="ck7m0d9oi0000947ddc2qenyb" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "Jay Park"
+        },
+        "headline": "LinkedList - 1",
+        "image": "http://thxtome.github.io/css/images/linkedlist/1.jpg",
+        "keywords": "",
+        "genre": "자료구조",
+        "datePublished": "2020-03-08",
+        "dateCreated": "2020-03-08",
+        "dateModified": "2020-03-10",
+        "url": "http://thxtome.github.io/2020/03/08/네번째-포스트/",
+        "description": "기초가 부족하단 생각에 자료구조부터 공부해보기로 했다스프링, 익스프레스, 마이바티스 등등 프레임워크를 공부하면 할수록기초가 중요하다는 생각이 들어 알고리즘, 자료구조등을 함께 공부하기로 했다.먼저 자료구조중에 LickedList를 먼저 공부한다.
+LinkedListLinkedList란 하나의 노드에 데이터를 담고 다음 노드의 주소를 가르키는 자료구조이다.다",
+        "wordCount": 632
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>팔로우:</p>
+        <ul class="social-links">
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2020/03/08/%EC%84%B8%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">오래된</strong>
+        <p class="article-nav-title">다리를 지나는 트럭</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">최근 글</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/">자료구조</a></p>
+                            <p class="item-title"><a href="/2020/03/08/%EB%84%A4%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/" class="title">LinkedList - 1</a></p>
+                            <p class="item-date"><time datetime="2020-03-08T02:07:00.000Z" itemprop="datePublished">2020-03-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a></p>
+                            <p class="item-title"><a href="/2020/03/08/%EC%84%B8%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/" class="title">다리를 지나는 트럭</a></p>
+                            <p class="item-date"><time datetime="2020-03-08T02:07:00.000Z" itemprop="datePublished">2020-03-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a></p>
+                            <p class="item-title"><a href="/2020/03/07/%EB%91%90%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/" class="title">수박수박수박수?</a></p>
+                            <p class="item-date"><time datetime="2020-03-07T08:11:00.000Z" itemprop="datePublished">2020-03-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/%EC%9E%90%EB%B0%94/">자바</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/%EC%9E%90%EB%B0%94/%EC%8A%A4%ED%94%84%EB%A7%81/">스프링</a></p>
+                            <p class="item-title"><a href="/2020/02/28/%EC%B2%AB%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/" class="title">이클립스에 Spring Tool Suite 플러그인 설치</a></p>
+                            <p class="item-date"><time datetime="2020-02-28T12:55:38.000Z" itemprop="datePublished">2020-02-28</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">카테고리</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/">자료구조</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%9E%90%EB%B0%94/">자바</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%9E%90%EB%B0%94/%EC%8A%A4%ED%94%84%EB%A7%81/">스프링</a><span class="category-list-count">1</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">아카이브</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">3월 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">2월 2020</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+
+            
+                
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2020 Jay Park</p>
+                
+                <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'thxtome-github-io';
+    
+    
+    var disqus_url = 'http://thxtome.github.io/2020/03/08/%EB%84%A4%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>
