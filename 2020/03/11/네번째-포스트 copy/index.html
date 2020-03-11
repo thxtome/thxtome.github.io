@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>LinkedList - 2 | 제이팍의 TIL</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="" />
+    
+    <meta name="description" content="1편에 이어서 linkedList를 공부한다이번엔 삭제와 iterator를 구현해보려고 한다.iterator는 linked list 내부적으로 훓는것이다.외부에서 for문을 사용하여 데이터를 꺼낼 수 있지만순차적 접근을 처음부터 해야하기 때문에 비효율적이다내부에서 index를 유지한채로 반복을 돌면 처음부터 다시 돌 필요가 없다.  구현[Doubly lin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LinkedList - 2">
+<meta property="og:url" content="http://thxtome.github.io/2020/03/11/%EB%84%A4%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8%20copy/index.html">
+<meta property="og:site_name" content="제이팍의 TIL">
+<meta property="og:description" content="1편에 이어서 linkedList를 공부한다이번엔 삭제와 iterator를 구현해보려고 한다.iterator는 linked list 내부적으로 훓는것이다.외부에서 for문을 사용하여 데이터를 꺼낼 수 있지만순차적 접근을 처음부터 해야하기 때문에 비효율적이다내부에서 index를 유지한채로 반복을 돌면 처음부터 다시 돌 필요가 없다.  구현[Doubly lin">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2020-03-11T13:36:00.000Z">
+<meta property="article:modified_time" content="2020-03-11T13:54:14.632Z">
+<meta property="article:author" content="Jay Park">
+<meta property="article:tag" content="웹개발">
+<meta property="article:tag" content=" 프론트엔드">
+<meta property="article:tag" content=" 백엔드">
+<meta property="article:tag" content=" 풀스택">
+<meta name="twitter:card" content="summary">
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">홈</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/">자료구조</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/%EC%9E%90%EB%B0%94/">자바</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/%EC%9E%90%EB%B0%94/%EC%8A%A4%ED%94%84%EB%A7%81/">스프링</a></li></ul></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/">자료구조</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-네번째-포스트 copy" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        LinkedList - 2
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+      <i class="fa fa-calendar"></i>
+      <a href="/2020/03/11/%EB%84%A4%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8%20copy/" class="article-date">
+         <time datetime="2020-03-11T13:36:00.000Z" itemprop="datePublished">2020-03-11</time>
+      </a>
+    </div>
+
+
+                
+
+                
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="1편에-이어서-linkedList를-공부한다"><a href="#1편에-이어서-linkedList를-공부한다" class="headerlink" title="1편에 이어서 linkedList를 공부한다"></a>1편에 이어서 linkedList를 공부한다</h2><p>이번엔 삭제와 iterator를 구현해보려고 한다.<br>iterator는 linked list 내부적으로 훓는것이다.<br>외부에서 for문을 사용하여 데이터를 꺼낼 수 있지만<br>순차적 접근을 처음부터 해야하기 때문에 비효율적이다<br>내부에서 index를 유지한채로 반복을 돌면 처음부터 다시 돌 필요가 없다. </p>
+<h3 id="구현"><a href="#구현" class="headerlink" title="구현"></a>구현</h3><figure class="highlight java"><figcaption><span>[Doubly linked list] []</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedList</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line">	<span class="keyword">private</span> Node&lt;E&gt; head;</span><br><span class="line">	<span class="keyword">private</span> Node&lt;E&gt; tail;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">		E item;</span><br><span class="line">		<span class="keyword">transient</span> Node&lt;E&gt; next;</span><br><span class="line">		Node&lt;E&gt; prev;</span><br><span class="line">		</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(Node&lt;E&gt; prev, E element, Node&lt;E&gt; next)</span> </span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.item = element;</span><br><span class="line">			<span class="keyword">this</span>.next = next;</span><br><span class="line">			<span class="keyword">this</span>.prev = prev;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> size;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addFirst</span> <span class="params">(E element)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">final</span> Node&lt;E&gt; prevHead = head;</span><br><span class="line">		</span><br><span class="line">		Node&lt;E&gt; newNode = <span class="keyword">new</span> Node&lt;E&gt;(<span class="keyword">null</span>, element, head);</span><br><span class="line">		head = newNode;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(prevHead == <span class="keyword">null</span>) tail = head;</span><br><span class="line">		<span class="keyword">else</span> prevHead.prev = newNode;</span><br><span class="line">		</span><br><span class="line">		size++;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLast</span> <span class="params">(E element)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">final</span> Node&lt;E&gt; prevTail = tail;</span><br><span class="line">		</span><br><span class="line">		Node&lt;E&gt; newNode = <span class="keyword">new</span> Node&lt;E&gt;(tail, element, <span class="keyword">null</span>);</span><br><span class="line">		tail = newNode;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(prevTail == <span class="keyword">null</span>) head = tail;</span><br><span class="line">		<span class="keyword">else</span> prevTail.next = newNode;</span><br><span class="line">		</span><br><span class="line">		size++;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Node&lt;E&gt; <span class="title">node</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(index &lt; (size &gt;&gt; <span class="number">1</span>))&#123;</span><br><span class="line">		    Node&lt;E&gt; x = <span class="keyword">this</span>.head; </span><br><span class="line">		    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; index; i++) &#123;</span><br><span class="line">			    x = x.next;</span><br><span class="line">		    &#125;</span><br><span class="line">			<span class="keyword">return</span> x;            </span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		    Node&lt;E&gt; x = <span class="keyword">this</span>.tail; </span><br><span class="line">		    <span class="keyword">for</span>(<span class="keyword">int</span> i = size - <span class="number">1</span>; i &gt; index; i--) &#123;</span><br><span class="line">			    x = x.prev;</span><br><span class="line">		    &#125;</span><br><span class="line">			<span class="keyword">return</span> x;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">		Node&lt;E&gt; prev = node(index);</span><br><span class="line">		Node&lt;E&gt; next = node(index+<span class="number">1</span>);</span><br><span class="line">		Node&lt;E&gt; newNode = <span class="keyword">new</span> Node&lt;E&gt;(prev, element, next);</span><br><span class="line">		prev.next = newNode; </span><br><span class="line">		next.prev = newNode;</span><br><span class="line">		size++;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(head == <span class="keyword">null</span>)&#123;</span><br><span class="line">		        <span class="keyword">return</span> <span class="string">"[]"</span>;</span><br><span class="line">		    &#125;       </span><br><span class="line">		 </span><br><span class="line">		 StringBuffer sb = <span class="keyword">new</span> StringBuffer(<span class="string">"["</span> + String.valueOf(<span class="keyword">this</span>.head.item));</span><br><span class="line">		    </span><br><span class="line">		 <span class="keyword">for</span> (Node&lt;E&gt; x = <span class="keyword">this</span>.head.next; x != <span class="keyword">null</span>; x = x.next) &#123;</span><br><span class="line">			 sb.append(<span class="string">","</span> + String.valueOf(x.item));</span><br><span class="line">         &#125;</span><br><span class="line">		 </span><br><span class="line">		 <span class="keyword">return</span> sb.append(<span class="string">"]"</span>).toString();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//여기서부터 추가코드</span></span><br><span class="line">	<span class="comment">//첫번째 요소 삭제</span></span><br><span class="line">	<span class="comment">//head의 다음 요소를 head로 지정하고 prev를 null로 바꾼다.</span></span><br><span class="line">	<span class="comment">//사이즈를 줄여준다.</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeFirst</span><span class="params">()</span></span>&#123;</span><br><span class="line">		Node&lt;E&gt; newHead = <span class="keyword">this</span>.head.next;</span><br><span class="line">		newHead.prev = <span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">this</span>.head = newHead;</span><br><span class="line">		size--;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//위와 반대로 실행한다.</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeLast</span><span class="params">()</span></span>&#123;</span><br><span class="line">		Node&lt;E&gt; newTail = <span class="keyword">this</span>.tail.prev;</span><br><span class="line">		newTail.next = <span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">this</span>.tail = newTail;</span><br><span class="line">		size--;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//원하는 요소의 이전 요소와 다음 요소를 불러온다</span></span><br><span class="line">	<span class="comment">//이전요소의 다음요소 그리고 다음요소의 이전요소를 바꿔준다.</span></span><br><span class="line">	<span class="comment">//사이즈를 줄여준다</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">		Node&lt;E&gt; prev = node(index-<span class="number">1</span>);</span><br><span class="line">		Node&lt;E&gt; next = node(index+<span class="number">1</span>);</span><br><span class="line">		Node&lt;E&gt; returnNode = prev.next;</span><br><span class="line">		prev.next = next;</span><br><span class="line">		next.prev = prev;</span><br><span class="line">		size--;</span><br><span class="line">		<span class="keyword">return</span> returnNode.item;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//데이터를 받아서 반복을 돌며 데이터가 일치하면 위치값을 반환한다.</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">indexOf</span><span class="params">(E element)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(Node&lt;E&gt; x = head; x != <span class="keyword">null</span>; x = x.next) &#123;</span><br><span class="line">			<span class="keyword">if</span>(x.item.equals(element)) <span class="keyword">return</span> index;</span><br><span class="line">			index++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//ListIterator를 생성해준다.</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> ListIterator&lt;E&gt; <span class="title">listIterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> ListIterator&lt;E&gt;(); </span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">ListIterator</span>&lt;<span class="title">E</span>&gt;</span>&#123;</span><br><span class="line">		<span class="comment">//다음 요소와 마지막 반환 요소 다음 요소의 위치값을 가지고 있다.</span></span><br><span class="line">		<span class="keyword">private</span> Node&lt;E&gt; lastReturned;</span><br><span class="line">		<span class="keyword">private</span> Node&lt;E&gt; next;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">int</span> nextIndex;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//생성할때 head를 다음요소로 넣는다.</span></span><br><span class="line">		<span class="function"><span class="keyword">private</span> <span class="title">ListIterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">			<span class="comment">//이부분에서 (Node&lt;E&gt;)로 </span></span><br><span class="line">			<span class="comment">//명시적 형변환이 왜 필요한지 모르겠다.</span></span><br><span class="line">			<span class="comment">//혹시 아시는분은 댓글로 알려주세요...</span></span><br><span class="line">			next = (Node&lt;E&gt;) head;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//다음요소가 있는지 확인한다.</span></span><br><span class="line">		<span class="comment">//다음요소의 위치값이 사이즈보다 작은지 여부를 반환한다.</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">			<span class="keyword">return</span> nextIndex &lt; size;</span><br><span class="line">		&#125;</span><br><span class="line">        </span><br><span class="line">		<span class="comment">//이전 반환 요소를 다음 요소로 바꿔주고</span></span><br><span class="line">		<span class="comment">//다음 요소를 다음 다음 요소로</span></span><br><span class="line">		<span class="comment">//위치값을 증가시키고</span></span><br><span class="line">		<span class="comment">//바꿔준 반환 요소의 데이터를 반환한다.</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> E <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">			lastReturned = next;</span><br><span class="line">			next = next.next;</span><br><span class="line">			nextIndex++;</span><br><span class="line">			<span class="keyword">return</span> lastReturned.item;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//이전요소가 있는지 확인한다.</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasPrevious</span><span class="params">()</span> </span>&#123;</span><br><span class="line">			<span class="keyword">return</span> nextIndex &gt; <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//만약 다음요소가 null이면 마지막 반환요소를 tail로 바꿔준다.</span></span><br><span class="line">		<span class="comment">//나머진 next와 동일하다</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> E <span class="title">previous</span><span class="params">()</span> </span>&#123;</span><br><span class="line">			lastReturned = next = (next == <span class="keyword">null</span> ? (Node&lt;E&gt;) tail : next.prev);</span><br><span class="line">			nextIndex--;</span><br><span class="line">			<span class="keyword">return</span> lastReturned.item;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//다음 위치값을 반환한다.</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">nextIndex</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> nextIndex;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">		<span class="comment">//이전 위치값을 반환한다.</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">previousIndex</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> nextIndex - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>출력테스트</p>
+<figure class="highlight java"><figcaption><span>[Doubly linked list] []</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[]args)</span> </span>&#123;</span><br><span class="line">	LinkedList&lt;String&gt; list = <span class="keyword">new</span> LinkedList&lt;String&gt;();</span><br><span class="line">	list.addFirst(<span class="string">"a"</span>);</span><br><span class="line">	list.addFirst(<span class="string">"b"</span>);</span><br><span class="line">	list.addFirst(<span class="string">"c"</span>);</span><br><span class="line">	list.addFirst(<span class="string">"d"</span>);</span><br><span class="line">	list.addFirst(<span class="string">"e"</span>);</span><br><span class="line">	list.addFirst(<span class="string">"f"</span>);</span><br><span class="line">	list.addFirst(<span class="string">"g"</span>);</span><br><span class="line">	list.addFirst(<span class="string">"h"</span>);</span><br><span class="line">	list.addFirst(<span class="string">"i"</span>);</span><br><span class="line"></span><br><span class="line">	System.out.println(list.toString());</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//처음 삭제</span></span><br><span class="line">	list.removeFirst();</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//마지막 삭제</span></span><br><span class="line">	list.removeLast();</span><br><span class="line"></span><br><span class="line">	<span class="comment">//중간삭제</span></span><br><span class="line">	System.out.println(<span class="string">"remove : "</span> + list.remove(<span class="number">1</span>));</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	<span class="comment">//인덱스 구하기</span></span><br><span class="line">	System.out.println(<span class="string">"e.index : "</span> + list.indexOf(<span class="string">"e"</span>));</span><br><span class="line"></span><br><span class="line">	LinkedList&lt;String&gt;.ListIterator&lt;String&gt; it = list.listIterator();</span><br><span class="line"></span><br><span class="line">	System.out.println(<span class="string">"next-------------"</span>);</span><br><span class="line">	<span class="keyword">while</span> (it.hasNext()) &#123;</span><br><span class="line">		System.out.print(it.next());</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	System.out.println(<span class="string">","</span> + it.nextIndex());</span><br><span class="line">	</span><br><span class="line">	System.out.println(<span class="string">"prev-------------"</span>);</span><br><span class="line">	<span class="keyword">while</span> (it.hasPrevious()) &#123;</span><br><span class="line">		System.out.print(it.previous());</span><br><span class="line">	&#125;</span><br><span class="line">	System.out.println(<span class="string">","</span> + it.previousIndex());</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>출력결과</p>
+<figure class="highlight java"><figcaption><span>[Doubly linked list] []</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[i,h,g,f,e,d,c,b,a]</span><br><span class="line">remove : g</span><br><span class="line">e.index : <span class="number">2</span></span><br><span class="line">next-------------</span><br><span class="line">hfedcb,<span class="number">6</span></span><br><span class="line">prev-------------</span><br><span class="line">bcdefh,-<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="결과"><a href="#결과" class="headerlink" title="결과"></a>결과</h2><p>간단하게 LinkedList를 구현해봤다.<br>어떤 구조인지 대충 알고 있었는데 실제로 코드를 보니<br>더 확실히 이해가 된 것 같다.<br>구현해보면서 아직 모자란 부분을 많이 알 수 있었다.<br>제너릭이나 인터페이스 상속을 더 공부해봐야겠다.</p>
+<p>혹시 잘못된 부분이나 미흡한 부분은 댓글로 남겨주시면<br>바로 수정하겠습니다.</p>
+<h2 id="끝"><a href="#끝" class="headerlink" title="끝!"></a>끝!</h2>
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://thxtome.github.io/2020/03/11/%EB%84%A4%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8%20copy/" data-id="ck7ndy9t50006tg7d8wltffso" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "Jay Park"
+        },
+        "headline": "LinkedList - 2",
+        "image": "http://thxtome.github.io",
+        "keywords": "",
+        "genre": "자료구조",
+        "datePublished": "2020-03-11",
+        "dateCreated": "2020-03-11",
+        "dateModified": "2020-03-11",
+        "url": "http://thxtome.github.io/2020/03/11/네번째-포스트 copy/",
+        "description": "1편에 이어서 linkedList를 공부한다이번엔 삭제와 iterator를 구현해보려고 한다.iterator는 linked list 내부적으로 훓는것이다.외부에서 for문을 사용하여 데이터를 꺼낼 수 있지만순차적 접근을 처음부터 해야하기 때문에 비효율적이다내부에서 index를 유지한채로 반복을 돌면 처음부터 다시 돌 필요가 없다. 
+구현[Doubly lin",
+        "wordCount": 1401
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>팔로우:</p>
+        <ul class="social-links">
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2020/03/10/%EB%84%A4%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">오래된</strong>
+        <p class="article-nav-title">LinkedList - 1</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">최근 글</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/">자료구조</a></p>
+                            <p class="item-title"><a href="/2020/03/11/%EB%84%A4%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8%20copy/" class="title">LinkedList - 2</a></p>
+                            <p class="item-date"><time datetime="2020-03-11T13:36:00.000Z" itemprop="datePublished">2020-03-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/">자료구조</a></p>
+                            <p class="item-title"><a href="/2020/03/10/%EB%84%A4%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/" class="title">LinkedList - 1</a></p>
+                            <p class="item-date"><time datetime="2020-03-10T14:47:00.000Z" itemprop="datePublished">2020-03-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a></p>
+                            <p class="item-title"><a href="/2020/03/08/%EC%84%B8%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/" class="title">다리를 지나는 트럭</a></p>
+                            <p class="item-date"><time datetime="2020-03-08T02:07:00.000Z" itemprop="datePublished">2020-03-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a></p>
+                            <p class="item-title"><a href="/2020/03/07/%EB%91%90%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/" class="title">수박수박수박수?</a></p>
+                            <p class="item-date"><time datetime="2020-03-07T08:11:00.000Z" itemprop="datePublished">2020-03-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/%EC%9E%90%EB%B0%94/">자바</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/%EC%9E%90%EB%B0%94/%EC%8A%A4%ED%94%84%EB%A7%81/">스프링</a></p>
+                            <p class="item-title"><a href="/2020/02/28/%EC%B2%AB%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/" class="title">이클립스에 Spring Tool Suite 플러그인 설치</a></p>
+                            <p class="item-date"><time datetime="2020-02-28T12:55:38.000Z" itemprop="datePublished">2020-02-28</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">카테고리</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/">자료구조</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%9E%90%EB%B0%94/">자바</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%9E%90%EB%B0%94/%EC%8A%A4%ED%94%84%EB%A7%81/">스프링</a><span class="category-list-count">1</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">아카이브</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">3월 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">2월 2020</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+
+            
+                
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2020 Jay Park</p>
+                
+                <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'thxtome-github-io';
+    
+    
+    var disqus_url = 'http://thxtome.github.io/2020/03/11/%EB%84%A4%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8%20copy/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>
