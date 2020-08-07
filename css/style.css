@@ -228,6 +228,9 @@ body,
   color: #fff;
   background: #006bde;
 }
+::-webkit-scrollbar {
+  display: none;
+}
 body {
   background: #eaeaea;
   font: 14px "Titillium Web", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
