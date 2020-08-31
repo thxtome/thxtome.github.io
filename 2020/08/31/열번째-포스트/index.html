@@ -6,21 +6,21 @@
     
 
     
-    <title>최고의 집합 | 제이팍의 TIL</title>
+    <title>절차적 프로그래밍 | 제이팍의 TIL</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="keywords" content="" />
     
-    <meta name="description" content="출처 &#x3D; 프로그래머스문제자연수 n 개로 이루어진 중복 집합(multi set, 편의상 이후에는 집합으로 통칭) 중에 다음 두 조건을 만족하는 집합을 최고의 집합이라고 합니다. 각 원소의 합이 S가 되는 수의 집합위 조건을 만족하면서 각 원소의 곱 이 최대가 되는 집합예를 들어서 자연수 2개로 이루어진 집합 중 합이 9가 되는 집합은 다음과 같이 4개가 있습">
+    <meta name="description" content="아래의 글은 패러다임을 개인적으로 공부한 후 정리한 내용입니다.혹시 틀린 부분이 있다면 댓글이나 이메일로 피드백해주시면 감사하겠습니다! 절차적 프로그래밍?절차적 프로그래밍, 영어로는 Procedural Programming이라고 한다.여기서 Procedural이란 일을 함에 있어서의 절차라고 해석하기보다는함수 또는 프로시져라고 해석하는게 맞다고 한다. 절차">
 <meta property="og:type" content="article">
-<meta property="og:title" content="최고의 집합">
-<meta property="og:url" content="http://thxtome.github.io/2020/03/30/%EC%97%AC%EB%8D%9F%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/index.html">
+<meta property="og:title" content="절차적 프로그래밍">
+<meta property="og:url" content="http://thxtome.github.io/2020/08/31/%EC%97%B4%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/index.html">
 <meta property="og:site_name" content="제이팍의 TIL">
-<meta property="og:description" content="출처 &#x3D; 프로그래머스문제자연수 n 개로 이루어진 중복 집합(multi set, 편의상 이후에는 집합으로 통칭) 중에 다음 두 조건을 만족하는 집합을 최고의 집합이라고 합니다. 각 원소의 합이 S가 되는 수의 집합위 조건을 만족하면서 각 원소의 곱 이 최대가 되는 집합예를 들어서 자연수 2개로 이루어진 집합 중 합이 9가 되는 집합은 다음과 같이 4개가 있습">
+<meta property="og:description" content="아래의 글은 패러다임을 개인적으로 공부한 후 정리한 내용입니다.혹시 틀린 부분이 있다면 댓글이나 이메일로 피드백해주시면 감사하겠습니다! 절차적 프로그래밍?절차적 프로그래밍, 영어로는 Procedural Programming이라고 한다.여기서 Procedural이란 일을 함에 있어서의 절차라고 해석하기보다는함수 또는 프로시져라고 해석하는게 맞다고 한다. 절차">
 <meta property="og:locale" content="ko_KR">
-<meta property="article:published_time" content="2020-03-30T13:42:00.000Z">
-<meta property="article:modified_time" content="2020-08-26T06:23:53.485Z">
+<meta property="article:published_time" content="2020-08-31T06:26:00.000Z">
+<meta property="article:modified_time" content="2020-08-31T12:07:20.013Z">
 <meta property="article:author" content="Jay Park">
 <meta property="article:tag" content="웹개발">
 <meta property="article:tag" content=" 프론트엔드">
@@ -149,19 +149,19 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">알고리즘</a>
+    <a class="page-title-link" href="/categories/%ED%8C%A8%EB%9F%AC%EB%8B%A4%EC%9E%84/">패러다임</a>
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-여덟번째-포스트" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-열번째-포스트" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        최고의 집합
+        절차적 프로그래밍
         </h1>
     
 
@@ -172,8 +172,8 @@
                 
     <div class="article-date">
       <i class="fa fa-calendar"></i>
-      <a href="/2020/03/30/%EC%97%AC%EB%8D%9F%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/" class="article-date">
-         <time datetime="2020-03-30T13:42:00.000Z" itemprop="datePublished">2020-03-30</time>
+      <a href="/2020/08/31/%EC%97%B4%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/" class="article-date">
+         <time datetime="2020-08-31T06:26:00.000Z" itemprop="datePublished">2020-08-31</time>
       </a>
     </div>
 
@@ -189,22 +189,43 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h2 id="출처-프로그래머스"><a href="#출처-프로그래머스" class="headerlink" title="출처 = 프로그래머스"></a>출처 = 프로그래머스</h2><h2 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h2><p>자연수 n 개로 이루어진 중복 집합(multi set, 편의상 이후에는 집합으로 통칭) 중에 다음 두 조건을 만족하는 집합을 최고의 집합이라고 합니다.</p>
-<p>각 원소의 합이 S가 되는 수의 집합<br>위 조건을 만족하면서 각 원소의 곱 이 최대가 되는 집합<br>예를 들어서 자연수 2개로 이루어진 집합 중 합이 9가 되는 집합은 다음과 같이 4개가 있습니다.<br>{ 1, 8 }, { 2, 7 }, { 3, 6 }, { 4, 5 }<br>그중 각 원소의 곱이 최대인 { 4, 5 }가 최고의 집합입니다.</p>
-<p>집합의 원소의 개수 n과 모든 원소들의 합 s가 매개변수로 주어질 때, 최고의 집합을 return 하는 solution 함수를 완성해주세요.</p>
-<h2 id="고민"><a href="#고민" class="headerlink" title="고민"></a>고민</h2><p>합 s를 이루는 자연수 n개의 곱이 최대값을 가지는 집합은 평균에서 가장 편차가 적은 수들의 집합이다.<br>위의 생각만 하면 금방 구현할 수 있었다. 근데 반복을 두번 돌지 않고 한번만 돌게하면서<br>오름차순으로 만드는게 고민점이 생겼다.</p>
-<h2 id="방법"><a href="#방법" class="headerlink" title="방법"></a>방법</h2><p>나머지는 자연수의 개수보다 작기때문에 한바퀴 이상 돌 수가 없으니<br>배열의 마지막부터 채우면서 나머지가 0보다 크면 1을 더해줘서<br>오름차순을 지키면서 반복을 한번만 돌 수 있었다.</p>
-<h2 id="코드"><a href="#코드" class="headerlink" title="코드"></a>코드</h2><figure class="highlight java"><figcaption><span>[최고의집합] []</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">	  <span class="keyword">public</span> <span class="keyword">int</span>[] solution(<span class="keyword">int</span> n, <span class="keyword">int</span> s) &#123;</span><br><span class="line">          <span class="comment">//평균</span></span><br><span class="line">		  <span class="keyword">int</span> aver = s/n;</span><br><span class="line">		  <span class="keyword">if</span>(aver == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;-<span class="number">1</span>&#125;;</span><br><span class="line">		  </span><br><span class="line">		  <span class="keyword">int</span>[] answer = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line"></span><br><span class="line">          <span class="comment">//나머지</span></span><br><span class="line">		  <span class="keyword">int</span> remainder = s%n;</span><br><span class="line">		  </span><br><span class="line">          <span class="comment">//마지막부터 반복 돌면서 나머지가 있으면 더함</span></span><br><span class="line">		  <span class="keyword">for</span>(<span class="keyword">int</span> i = answer.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--, remainder--) &#123;</span><br><span class="line">			  answer[i] = aver + (remainder &gt; <span class="number">0</span> ? <span class="number">1</span> : <span class="number">0</span>);</span><br><span class="line">		  &#125;</span><br><span class="line">		  </span><br><span class="line">	      <span class="keyword">return</span> answer;</span><br><span class="line">	  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <p>아래의 글은 패러다임을 개인적으로 공부한 후 정리한 내용입니다.<br>혹시 틀린 부분이 있다면 댓글이나 이메일로 피드백해주시면 감사하겠습니다!</p>
+<h2 id="절차적-프로그래밍"><a href="#절차적-프로그래밍" class="headerlink" title="절차적 프로그래밍?"></a>절차적 프로그래밍?</h2><p>절차적 프로그래밍, 영어로는 Procedural Programming이라고 한다.<br>여기서 Procedural이란 일을 함에 있어서의 절차라고 해석하기보다는<br>함수 또는 프로시져라고 해석하는게 맞다고 한다.</p>
+<p>절차적 프로그래밍은 프로그래밍 패러다임의 하나로<br>데이터와 프로시져를 별개의 요소로 구분하며,<br>프로시져를 중점으로 문제를 해결하는 방식이다.</p>
+<p>큰 문제를 여러 작은 프로시저로 나누어 해결한다.<br>전역변수와 프로시져 내 지역변수가 있으며, 전역변수는 프로시져끼리 공유할 수 있다.<br>또한 전역변수는 프로시져에서 변경될 수 있다.</p>
+<figure class="highlight java"><figcaption><span>[계좌이체] []</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 계좌이체 </span>&#123;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Account[] accounts = <span class="keyword">new</span> Account[] &#123;<span class="keyword">new</span> Account(<span class="string">"kim"</span>, <span class="number">300</span>),</span><br><span class="line"><span class="keyword">new</span> Account(<span class="string">"park"</span>, <span class="number">300</span>)&#125;;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">deposit(<span class="string">"kim"</span>,<span class="number">1000</span>);</span><br><span class="line">deposit(<span class="string">"park"</span>,<span class="number">500</span>);</span><br><span class="line"></span><br><span class="line">    	<span class="keyword">int</span> payment = <span class="number">1200</span>;</span><br><span class="line">    	<span class="keyword">if</span>(hasEnoughBalance(<span class="string">"kim"</span>,payment)) &#123;</span><br><span class="line">    		transfer(<span class="string">"kim"</span>,<span class="string">"park"</span>,payment);</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Account <span class="title">getAccount</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt; accounts.length;i++) &#123;</span><br><span class="line">    		<span class="keyword">if</span>(accounts[i].name.equals(name)) &#123;</span><br><span class="line">    			<span class="keyword">return</span> accounts[i];</span><br><span class="line">    		&#125;</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">deposit</span><span class="params">(String name, <span class="keyword">int</span> amount)</span> </span>&#123;</span><br><span class="line">    	Account account = getAccount(name);</span><br><span class="line">    	account.balance += amount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">withdraw</span><span class="params">(String name, <span class="keyword">int</span> amount)</span> </span>&#123;</span><br><span class="line">    	Account account = getAccount(name);</span><br><span class="line">    	account.balance -= amount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">hasEnoughBalance</span><span class="params">(String name, <span class="keyword">int</span> amount)</span> </span>&#123;</span><br><span class="line">    	Account account = getAccount(name);</span><br><span class="line">    	<span class="keyword">return</span> account.balance &gt; amount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">transfer</span><span class="params">(String payerName, String beneficiaryName, <span class="keyword">int</span> payment)</span> </span>&#123;</span><br><span class="line">    	Account payerAccount = getAccount(payerName);</span><br><span class="line">    	withdraw(payerAccount.name, payment);</span><br><span class="line">    	Account beneficiaryAccount = getAccount(beneficiaryName);</span><br><span class="line">    	deposit(beneficiaryAccount.name, payment);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Account</span></span>&#123;</span><br><span class="line">    	<span class="keyword">int</span> balance;</span><br><span class="line">    	String name;</span><br><span class="line"></span><br><span class="line">    	<span class="function"><span class="keyword">public</span> <span class="title">Account</span><span class="params">(String name, <span class="keyword">int</span> balance)</span> </span>&#123;</span><br><span class="line">    		<span class="keyword">this</span>.name = name;</span><br><span class="line">    		<span class="keyword">this</span>.balance = balance;</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="결과"><a href="#결과" class="headerlink" title="결과"></a>결과</h1><p>배열의 채우기도 반복 돌지않고<br>Arrays.fill()이라는 메소드가 있었다.<br>다음에 써먹어봐야겠다.</p>
-<h1 id="끝"><a href="#끝" class="headerlink" title="끝!"></a>끝!</h1>
+<p>은행에서의 입금과 계좌이체를 간단하게 구현했다.<br>Account 클래스가 있지만 이는 객체가 아닌 데이터들의 집합이라고 볼 수 있다.</p>
+<p>계좌이체라는 문제를 게좌 찾기, 입금, 출금, 잔액확인등의 기능으로 나누어 해결하려했다.<br>accounts라는 전역변수가 있고 프로시져 내에서 accounts에 접근, 변경할 수 있다.</p>
+<p>절차지향 프로그래밍은<br>위의 코드처럼 데이터와 프로시져가 분리되어있고 프로시져들이 데이터를 공유하며<br>큰 문제를 작은 단위의 프로시져로 해결하려는 방식이다.</p>
+<h2 id="장점"><a href="#장점" class="headerlink" title="장점"></a>장점</h2><p>기능을 분리해서 프로시져로 사용하기 때문에 코드를 재활용할 수 있었다.<br>기능별로 분리됐기 때문에 협업이 가능하다.<br>또한 프로시져의 이름만 읽어도 흐름 추적이 용이하다.</p>
+<h2 id="단점"><a href="#단점" class="headerlink" title="단점"></a>단점</h2><p>현실을 그대로 나타내기 힘들다.</p>
+<p>데이터와 프로시져가 분리되어있어 누가 무엇을 한다는 개념이 없어<br>현실 세계를 그대로 구현하기 힘들다.</p>
+<p>유지보수가 어렵다.</p>
+<p>전역 변수의 접근을 막을 수 없다.<br>코드 어느곳에서도 전역 변수에 접근할 수 있어서 데이터의 신뢰성을 보장할 수 없다.</p>
+<p>또한 전역변수를 공유하기 때문에 변수의 구조에 변화가 있을 경우<br>공유하고 있는 모든 프로시져에 수정이 필요할 수도 있다.<br>이 부분은 최범균님의 글을 보고 정확히 파악할 수 있었다.</p>
+<blockquote><p>이 부분은 최범균님의 글을 보고 정확히 파악할 수 있었다.</p>
+<footer><strong>최범균</strong><cite><a href="https://javacan.tistory.com/entry/객체-지향과-절차-지향에-대한-질문-답변" target="_blank" rel="noopener">객체-지향과-절차-지향에-대한-질문-답변</a></cite></footer></blockquote>
+
+<h2 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h2><a href="https://namu.wiki/w/%EC%A0%88%EC%B0%A8%EC%A0%81%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D" title="[external] []" target="">나무위키&#x2F;절차적 프로그래밍</a>
+<br>
+<a href="https://ko.wikipedia.org/wiki/%EC%A0%88%EC%B0%A8%EC%A0%81_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D" title="[external] []" target="">위키백과&#x2F;절차적 프로그래밍</a>
+<br>
+<a href="https://levelup.gitconnected.com/functional-object-oriented-procedural-programming-644feda5bcfc/" title="[external] []" target="">Functional, Object-Oriented, and Procedural Programming</a>
+<br>
+<a href="https://www.tuannguyen.tech/2019/05/programming-paradigms-what-is-procedural-programming/" title="[external] []" target="">programming-paradigms-what-is-procedural-programming</a>
+<br>
+<a href="https://javacan.tistory.com/entry/%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5%EA%B3%BC-%EC%A0%88%EC%B0%A8-%EC%A7%80%ED%96%A5%EC%97%90-%EB%8C%80%ED%95%9C-%EC%A7%88%EB%AC%B8-%EB%8B%B5%EB%B3%80/" title="[external] []" target="">객체-지향과-절차-지향에-대한-질문-답변</a>
+<br>
+<a href="https://kamang-it.tistory.com/entry/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%8C%A8%EB%9F%AC%EB%8B%A4%EC%9E%84%EC%88%9C%EC%B0%A8%EC%A0%81%EB%B9%84%EA%B5%AC%EC%A1%B0%EC%A0%81%EC%A0%88%EC%B0%A8%EC%A0%81%EA%B5%AC%EC%A1%B0%EC%A0%81%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5%EC%A0%81-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D" title="[external] []" target="">프로그래밍-패러다임순차적비구조적절차적구조적객체지향적-프로그래밍</a>
+
         </div>
         <footer class="article-footer">
             
 
 
 
-    <a data-url="http://thxtome.github.io/2020/03/30/%EC%97%AC%EB%8D%9F%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/" data-id="ckeihaolr0008ec7dan3u6ley" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
+    <a data-url="http://thxtome.github.io/2020/08/31/%EC%97%B4%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/" data-id="ckeihaolt000cec7dhtjae8qg" class="article-share-link"><i class="fa fa-share"></i>공유하기</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -274,17 +295,18 @@
             "@type": "Person",
             "name": "Jay Park"
         },
-        "headline": "최고의 집합",
+        "headline": "절차적 프로그래밍",
         "image": "http://thxtome.github.io",
         "keywords": "",
-        "genre": "알고리즘",
-        "datePublished": "2020-03-30",
-        "dateCreated": "2020-03-30",
-        "dateModified": "2020-08-26",
-        "url": "http://thxtome.github.io/2020/03/30/여덟번째-포스트/",
-        "description": "출처 = 프로그래머스문제자연수 n 개로 이루어진 중복 집합(multi set, 편의상 이후에는 집합으로 통칭) 중에 다음 두 조건을 만족하는 집합을 최고의 집합이라고 합니다.
-각 원소의 합이 S가 되는 수의 집합위 조건을 만족하면서 각 원소의 곱 이 최대가 되는 집합예를 들어서 자연수 2개로 이루어진 집합 중 합이 9가 되는 집합은 다음과 같이 4개가 있습",
-        "wordCount": 363
+        "genre": "패러다임",
+        "datePublished": "2020-08-31",
+        "dateCreated": "2020-08-31",
+        "dateModified": "2020-08-31",
+        "url": "http://thxtome.github.io/2020/08/31/열번째-포스트/",
+        "description": "아래의 글은 패러다임을 개인적으로 공부한 후 정리한 내용입니다.혹시 틀린 부분이 있다면 댓글이나 이메일로 피드백해주시면 감사하겠습니다!
+절차적 프로그래밍?절차적 프로그래밍, 영어로는 Procedural Programming이라고 한다.여기서 Procedural이란 일을 함에 있어서의 절차라고 해석하기보다는함수 또는 프로시져라고 해석하는게 맞다고 한다.
+절차",
+        "wordCount": 698
     }
 </script>
 
@@ -317,20 +339,10 @@
         
 <nav id="article-nav">
     
-        <a href="/2020/08/26/%EC%95%84%ED%99%89%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">새로운</strong>
-        <p class="article-nav-title">
-        
-            패러다임을 공부해보자!
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2020/03/26/%EC%9D%BC%EA%B3%B1%EB%B2%88%EC%A8%B0-%ED%8F%AC%EC%8A%A4%ED%8A%B8/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2020/08/26/%EC%95%84%ED%99%89%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">오래된</strong>
-        <p class="article-nav-title">ArrayList</p>
+        <p class="article-nav-title">패러다임을 공부해보자!</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -461,7 +473,7 @@
     var disqus_shortname = 'thxtome-github-io';
     
     
-    var disqus_url = 'http://thxtome.github.io/2020/03/30/%EC%97%AC%EB%8D%9F%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/';
+    var disqus_url = 'http://thxtome.github.io/2020/08/31/%EC%97%B4%EB%B2%88%EC%A7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8/';
     
     (function() {
     var dsq = document.createElement('script');
